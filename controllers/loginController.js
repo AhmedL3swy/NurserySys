@@ -17,6 +17,7 @@ const login = asyncHandler(async (req, res) => {
       _id: teacher._id,
       fullName: teacher.fullName,
       email: teacher.email,
+      role: teacher.role,
       token: token,
     });
   } else {

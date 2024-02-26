@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   image: { type: String},
+  role:{type:String, default:"teacher"}
   
 });
 
