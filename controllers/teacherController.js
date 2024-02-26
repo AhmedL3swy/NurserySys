@@ -42,7 +42,7 @@ exports.addNewTeacher = (req, res,next) => {
 
 // #region Get Methods
 exports.getAllTeachers = (req, res,next) => {
-    TeacherModel.find({})
+    TeacherModel.find({role:"teacher"})
     .then((teacherDocs) => {
       if (!teacherDocs) {
         res.status(200).json({ message: "no teachers to show" });
