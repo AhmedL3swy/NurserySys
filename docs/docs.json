@@ -1,0 +1,591 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NurserySys API",
+    "description": "API for Nursery System"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login with email and password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "User's email",
+                    "example": "user@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "User's password",
+                    "example": "secret_password"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
+    "/teachers": {
+      "get": {
+        "tags": [
+          "teachersEndPoint"
+        ],
+        "summary": "Get all teachers",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "teachersEndPoint"
+        ],
+        "summary": "Add a new teacher",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fullname": {
+                    "type": "string",
+                    "description": "Teacher's full name",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Teacher's email",
+                    "example": "john@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Teacher's password",
+                    "example": "secret_password"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Teacher's image"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "Teacher's role (e.g., \"admin\" or \"teacher\")",
+                    "example": "teacher"
+                  }
+                },
+                "required": [
+                  "fullname",
+                  "email",
+                  "password",
+                  "role"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "teachersEndPoint"
+        ],
+        "summary": "Update a teacher",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Teacher's ID",
+                    "example": 1
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "description": "Teacher's full name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Teacher's email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Teacher's password"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Teacher's image"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "Teacher's role (e.g., \"admin\" or \"teacher\")"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "teachersEndPoint"
+        ],
+        "summary": "Delete a teacher by ID",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Teacher's ID",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Teacher not found"
+          }
+        }
+      }
+    },
+    "/teachers/supervisors": {
+      "get": {
+        "tags": [
+          "teachersEndPoint"
+        ],
+        "summary": "Get all teachers",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/child": {
+      "get": {
+        "tags": [
+          "childEndPoint"
+        ],
+        "summary": "Get all children",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "childEndPoint"
+        ],
+        "summary": "Add a new child",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fullname": {
+                    "type": "string",
+                    "description": "Child's full name",
+                    "example": "Child Doe"
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "Child's city",
+                    "example": "Cityville"
+                  },
+                  "street": {
+                    "type": "string",
+                    "description": "Child's street",
+                    "example": "Main Street"
+                  },
+                  "building": {
+                    "type": "integer",
+                    "description": "Child's building number",
+                    "example": 123
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "Child's age",
+                    "example": 5
+                  },
+                  "level": {
+                    "type": "string",
+                    "description": "Child's level",
+                    "example": "Kindergarten"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Child's image"
+                  }
+                },
+                "required": [
+                  "fullname",
+                  "city",
+                  "street",
+                  "level"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "childEndPoint"
+        ],
+        "summary": "Update a child",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Child's ID",
+                    "example": 1
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "description": "Child's full name"
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "Child's city"
+                  },
+                  "street": {
+                    "type": "string",
+                    "description": "Child's street"
+                  },
+                  "building": {
+                    "type": "integer",
+                    "description": "Child's building number"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "Child's age"
+                  },
+                  "level": {
+                    "type": "string",
+                    "description": "Child's level"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Child's image"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "childEndPoint"
+        ],
+        "summary": "Delete a child",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Child's ID",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/child/{id}": {
+      "get": {
+        "tags": [
+          "childEndPoint"
+        ],
+        "summary": "Get a child by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "description": "Child's ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Child not found"
+          }
+        }
+      }
+    },
+    "/class": {
+      "get": {
+        "tags": [
+          "Class"
+        ],
+        "summary": "Get all classes",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Class"
+        ],
+        "summary": "Add a new class",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Class name",
+                    "example": "ClassA"
+                  },
+                  "supervisor": {
+                    "type": "integer",
+                    "description": "Supervisor's ID (teacher ID)",
+                    "example": 1
+                  },
+                  "children": {
+                    "type": "array",
+                    "description": "Array of child IDs",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "example": [
+                      1,
+                      2,
+                      3,
+                      4
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "supervisor",
+                  "children"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Class"
+        ],
+        "summary": "Update a class",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Class ID",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Class name",
+                    "example": "ClassA"
+                  },
+                  "supervisor": {
+                    "type": "integer",
+                    "description": "Supervisor's ID (teacher ID)",
+                    "example": 1
+                  },
+                  "children": {
+                    "type": "array",
+                    "description": "Array of child IDs",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "example": [
+                      1,
+                      2,
+                      3,
+                      4
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Class"
+        ],
+        "summary": "Delete a class",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Class ID",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/class/{id}": {
+      "get": {
+        "tags": [
+          "Class"
+        ],
+        "summary": "Get a class by ID",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "class not found"
+          }
+        }
+      }
+    },
+    "/class/teachers/{id}": {
+      "get": {
+        "tags": [
+          "Class"
+        ],
+        "summary": "Get class Supervisors by Class ID",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "class are not found"
+          }
+        }
+      }
+    }
+  }
+}
