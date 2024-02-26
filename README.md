@@ -122,7 +122,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="center">
 <a href="mailto:ahmed.a.alesawy@gmail.com">
-  <img src="https://img.shields.io/badge/-Your.Name-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail">
+  <img src="https://img.shields.io/badge/-AhmedL3swy-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail">
 </a> </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
