@@ -11,12 +11,14 @@ const { childPostValidation, childUpdateValidation ,validate } = require("../mid
 // #endregion Validators
 //#region Importing Other MW
 const uploadImg=require('../middleware/uploadImageMW');
+const authorize = require('../middleware/authorizationMW');
 //#endregion Importing Other MW
 
 // #region Routes
 
 // Mandatory Route
 childRoute.route('/child')
+            .all(authorize('admin'))
             .get(childController.getAllChildren)
             .post(uploadImg("/uploads/children"),childPostValidation,validate,childController.addNewChild)
             .put(uploadImg("/uploads/children"),childUpdateValidation,validate,childController.updateChild)

@@ -10,12 +10,15 @@ const classController = require('../controllers/classController');
 // # region Validators
 const { classPostValidation, classUpdateValidation ,validate } = require("../middleware/validationMW")
 // #endregion Validators
-
+// #region Importing Other MW
+const authorize = require('../middleware/authorizationMW');
+// #endregion Importing Other MW
 // #region Routes
 
 // Mandatory Route
 
 classRoute.route('/class')
+            .all(authorize('admin'))
             .get(classController.getAllClasses)
             .post(classPostValidation,validate,classController.addNewClass)
             .put(classUpdateValidation,validate,classController.updateClass)

@@ -17,10 +17,10 @@ const authorize = require('../middleware/authorizationMW');
 //#region Routes
 // Mandatory Route
 teacherRoute.route('/teachers')
-            .get(teacherController.getAllTeachers)
-            .post(uploadImg("/uploads/teachers"),teacherPostValidation,validate,teacherController.addNewTeacher)
-            .put(uploadImg("/uploads/children"),teacherUpdateValidation,validate,teacherController.updateTeacher)
-            .delete(teacherController.deleteTeacher)
+            .get(authorize('admin'),teacherController.getAllTeachers)
+            .post(authorize('admin,teacher'),uploadImg("/uploads/teachers"),teacherPostValidation,validate,teacherController.addNewTeacher)
+            .put(authorize('admin,teacher'),uploadImg("/uploads/children"),teacherUpdateValidation,validate,teacherController.updateTeacher)
+            .delete(authorize('admin,teacher'),teacherController.deleteTeacher)
 // Extra Routes
 teacherRoute.get('/teachers/supervisors', teacherController.getAllSupervisors);
 
