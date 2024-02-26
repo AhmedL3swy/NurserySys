@@ -2,9 +2,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const mongoose = require("mongoose");
-const swaggerUI = require("swagger-ui-express");
-require("dotenv").config()
+const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const swaggerUI = require('swagger-ui-express');
+require('dotenv').config();
 // #endregion Loading Vendors Modules
 
 // #region Importing Routes
@@ -25,25 +26,44 @@ const docs = require('./docs/docs.json');
 // #endregion Importing Swagger Documentation
 
 // #region initializing express server
-const server= express();
-let port = process.env.PORT 
-let db = process.env.DB_URL
+const server = express();
+let port = process.env.PORT;
 
-mongoose
-  .connect(db)
-  .then(() => {
-    console.log("db connected");
-    server.listen(port, () => {
-      console.log("express is listening");
-      console.log(port);
-      //intalize admin
-      require('./middleware/intializeMW');
-    });
-  })
-  .catch((err) => {
-    console.log("db error" + err.message);
+// Use mongoose-memory-server for testing or development
+let mongooseServer;
+
+if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'prod') {
+  mongooseServer = new MongoMemoryServer();
+  mongooseServer.start().then(() => {
+    const mongoUri = mongooseServer.getUri();
+    mongoose
+      .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+      .then(() => {
+        console.log('In-memory MongoDB connected');
+        startServer();
+      });
   });
+} else {
+  // For production or other environments, use the provided DB_URL from the environment variables
+  mongoose
+    .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log('MongoDB connected');
+      startServer();
+    })
+    .catch((err) => {
+      console.log('db error' + err.message);
+    });
+}
 
+function startServer() {
+  server.listen(port, () => {
+    console.log('Express is listening');
+    console.log(port);
+    // Initialize admin
+    require('./middleware/intializeMW');
+  });
+}
 // #endregion initializing express server
 
 // #region Applying Middlewares
@@ -55,7 +75,7 @@ server.use(express.urlencoded({ extended: true }));
 // CORS
 server.use(cors());
 // Routes
-server.use("/docs", swaggerUI.serve, swaggerUI.setup(docs));
+server.use('/docs', swaggerUI.serve, swaggerUI.setup(docs));
 server.use(loginRoute);
 server.use(authenticate);
 server.use(teacherRoute);
@@ -66,4 +86,3 @@ server.use(classRoute);
 server.use(notFound);
 server.use(errorHandler);
 // #Endregion Applying Middlewares
-
