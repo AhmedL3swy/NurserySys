@@ -6,7 +6,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -158,6 +157,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [stars-url]: https://github.com/AhmedL3swy/NurserySys/stargazers
 [issues-shield]: https://img.shields.io/github/issues/AhmedL3swy/NurserySys.svg?style=for-the-badge
 [issues-url]: https://github.com/AhmedL3swy/NurserySys/issues
-[license-shield]: https://img.shields.io/github/license/AhmedL3swy/NurserySys.svg
+
 
 
