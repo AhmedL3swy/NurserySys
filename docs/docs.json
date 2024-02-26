@@ -105,18 +105,12 @@
                     "type": "string",
                     "format": "binary",
                     "description": "Teacher's image"
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "Teacher's role (e.g., \"admin\" or \"teacher\")",
-                    "example": "teacher"
                   }
                 },
                 "required": [
                   "fullname",
                   "email",
-                  "password",
-                  "role"
+                  "password"
                 ]
               }
             }
@@ -167,10 +161,6 @@
                     "type": "string",
                     "format": "binary",
                     "description": "Teacher's image"
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "Teacher's role (e.g., \"admin\" or \"teacher\")"
                   }
                 }
               }
@@ -636,6 +626,17 @@
           "Class"
         ],
         "summary": "Get a class by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the class"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation"
@@ -657,12 +658,23 @@
           "Class"
         ],
         "summary": "Get class Supervisors by Class ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the class"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation"
           },
           "404": {
-            "description": "class are not found"
+            "description": "Class not found"
           }
         },
         "security": [
@@ -673,11 +685,6 @@
       }
     }
   },
-  "security": [
-    {
-      "JWT": []
-    }
-  ],
   "components": {
     "securitySchemes": {
       "JWT": {
