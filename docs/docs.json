@@ -1,9 +1,16 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.0.3",
   "info": {
-    "version": "1.0.0",
-    "title": "NurserySys API",
-    "description": "API for Nursery System"
+    "title": "Nursery System Restful API - OpenAPI 3.0",
+    "description": "Restful API for managing nursery-related data implemented using Node.js, Express, and MongoDB.\n<br />\n<a href=\"https://github.com/AhmedL3swy/NurserySys\"><strong>Explore the docs »</strong></a>\n<br />\n<br />\n·\n<a href=\"https://github.com/AhmedL3swy/NurserySys/issues\">Report Bug</a>\n·\n<a href=\"https://github.com/AhmedL3swy/NurserySys/issues\">Request Feature</a>",
+    "contact": {
+      "email": "ahmed.a.alesawy@gmail.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://github.com/AhmedL3swy/NurserySys/blob/main/LICENSE"
+    },
+    "version": "1.0.0"
   },
   "servers": [
     {
@@ -27,13 +34,13 @@
                   "email": {
                     "type": "string",
                     "description": "User's email",
-                    "example": "user@example.com"
+                    "example": "admin@admin.com"
                   },
                   "password": {
                     "type": "string",
                     "format": "password",
                     "description": "User's password",
-                    "example": "secret_password"
+                    "example": "admin"
                   }
                 },
                 "required": [
@@ -119,7 +126,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -169,7 +181,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -203,7 +220,12 @@
           "404": {
             "description": "Teacher not found"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/teachers/supervisors": {
@@ -216,7 +238,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/child": {
@@ -229,7 +256,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -293,7 +325,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -350,7 +387,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -380,8 +422,16 @@
         "responses": {
           "200": {
             "description": "Successful operation"
+          },
+          "404": {
+            "description": "Child not found"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/child/{id}": {
@@ -406,7 +456,12 @@
           "404": {
             "description": "Child not found"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/class": {
@@ -419,7 +474,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -470,7 +530,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -521,7 +586,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -552,7 +622,12 @@
           "200": {
             "description": "Successful operation"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/class/{id}": {
@@ -568,7 +643,12 @@
           "404": {
             "description": "class not found"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/class/teachers/{id}": {
@@ -584,7 +664,26 @@
           "404": {
             "description": "class are not found"
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "JWT": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
       }
     }
   }
