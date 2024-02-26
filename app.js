@@ -36,6 +36,8 @@ mongoose
     server.listen(port, () => {
       console.log("express is listening");
       console.log(port);
+      //intalize admin
+      require('./middleware/intializeMW');
     });
   })
   .catch((err) => {
