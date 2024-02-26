@@ -24,6 +24,7 @@ exports.getAllChildren = (req, res,next) => {
 }
 // Get Child By Id //
 exports.getChildById = (req, res,next) => {
+   console.log(req.params.id)
     Child.findOne({ _id: req.params.id })
     .then((doc) => {
       if (!doc) {

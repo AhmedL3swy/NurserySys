@@ -27,7 +27,7 @@ classRoute.route('/class')
 // Class By Id Route
 classRoute.get('/class/:id', classController.getClassById);
 // Class Supervisors Route
-classRoute.get('/class/teacher/:id', classController.getClassSupervisors);
+classRoute.get('/class/teachers/:id', classController.getClassSupervisors);
 // Class Children Route
 classRoute.get('/class/child/:id', classController.getClassChildren);
 
