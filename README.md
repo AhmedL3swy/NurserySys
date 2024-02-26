@@ -159,6 +159,5 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-shield]: https://img.shields.io/github/issues/AhmedL3swy/NurserySys.svg?style=for-the-badge
 [issues-url]: https://github.com/AhmedL3swy/NurserySys/issues
 [license-shield]: https://img.shields.io/github/license/AhmedL3swy/NurserySys.svg
-[license-url]: https://github.com/AhmedL3swy/NurserySys/blob/main/LICENSE
 
 
